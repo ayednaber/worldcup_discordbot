@@ -109,7 +109,7 @@ async def go(ctx, arg):
     member = ctx.message.author
     discord.utils.get(member.server.roles, name=arg)
 
-client.run('MTA0MDQ1NDM3OTEzMzc1MTMxNg.G82IIj.yKRa9FU-PoVODOOzHYoixUga-dbLVqb7LL92lQ')
+client.run(TOKEN)
 
 
 # This is how to mention users
