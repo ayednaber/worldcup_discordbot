@@ -43,12 +43,13 @@ async def sendmatches(ctx):
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
         dateinjordan = date1 + timedelta(hours=3)
         dateintoronto = date1 - timedelta(hours=5)
+        dateinmexico= date1 - timedelta(hours=6)
         dateineurope = date1 + timedelta(hours=1)
         # print(radate)
         if (radate == date1.date()):
             message = '**' + str(date1.date()) + '**\n'
             message += i["HomeTeam"] + ' ' + dataDict[i["HomeTeam"]] + " vs. " + i["AwayTeam"] + ' ' + dataDict[i["AwayTeam"]] + '\n'
-            message += '**Times:** ' + dateinjordan.strftime('%I:%M %p') + " :flag_jo:" + "    " + dateintoronto.strftime('%I:%M %p') + " :flag_ca:" + "     " + dateineurope.strftime('%I:%M %p') +  " :flag_eu:"
+            message += '**Times:** ' + dateinjordan.strftime('%I:%M %p') + " :flag_jo:" + "    " + dateineurope.strftime('%I:%M %p') + " :flag_eu:" + "     " + dateintoronto.strftime('%I:%M %p') +  " :flag_ca:" + "     " + dateinmexico.strftime('%I:%M %p') +  " :flag_mx:"
             await general_channel.send(message)
 
 @client.command()
@@ -73,15 +74,17 @@ async def sendmatches2(ctx):
 async def on_raw_reaction_add(payload):
     guild = client.get_guild(payload.guild_id)
     member = discord.utils.get(guild.members, id=payload.user_id)
-    role = discord.utils.get(guild.roles, name=dataDict2[payload.emoji.name])
-    await member.add_roles(role)
+    if payload.channel_id == 1040452457521741904:
+        role = discord.utils.get(guild.roles, name=dataDict2[payload.emoji.name])
+        await member.add_roles(role)
 
 @client.event
 async def on_raw_reaction_remove(payload):
     guild = client.get_guild(payload.guild_id)
     member = discord.utils.get(guild.members, id=payload.user_id)
-    role = discord.utils.get(guild.roles, name=dataDict2[payload.emoji.name])
-    await member.remove_roles(role)
+    if payload.channel_id == 1040452457521741904:
+        role = discord.utils.get(guild.roles, name=dataDict2[payload.emoji.name])
+        await member.remove_roles(role)
 
 @client.command()
 async def test(ctx):
@@ -105,9 +108,9 @@ async def delete(ctx,arg):
     await ctx.channel.purge(limit=int(arg))
 
 @client.command()
-async def go(ctx, arg):
-    member = ctx.message.author
-    discord.utils.get(member.server.roles, name=arg)
+async def time(ctx):
+    testdatetime = datetime.today()
+    await ctx.channel.send(str(testdatetime))
 
 client.run(TOKEN)
 
