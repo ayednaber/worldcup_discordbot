@@ -112,7 +112,7 @@ async def time(ctx):
     testdatetime = datetime.today()
     await ctx.channel.send(str(testdatetime))
 
-client.run(os.environ('DISCORD_TOKEN'))
+client.run(os.environ.get('DISCORD_TOKEN'))
 
 
 # This is how to mention users
