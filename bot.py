@@ -4,7 +4,7 @@ from discord.ext.commands import Bot
 from discord.ext import tasks
 from datetime import datetime, timedelta, date
 import json
-from boto.s3.connection import S3Connection
+# from boto.s3.connection import S3Connection
 
 # from dotenv import load_dotenv
 # load_dotenv()
