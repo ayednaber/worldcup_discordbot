@@ -10,12 +10,12 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-dataDict = {'Argentina': '🇦🇷', 'Australia': '🇦🇺', 'Belgium': '🇧🇪', 'Brazil': '🇧🇷', 'Canada': '🇨🇦', 'Switzerland': '🇨🇭', 'Cameroon': '🇨🇲', 'Costa Rica': '🇨🇷', 'Germany': '🇩🇪', 'Denmark': '🇩🇰', 'Ecuador': '🇪🇨', 'Spain': '🇪🇸', 'France': '🇫🇷', 'Ghana': '🇬🇭', 'Croatia': '🇭🇷', 'Iran': '🇮🇷', 'Japan': '🇯🇵', 'South Korea': '🇰🇷', 'Morocco': '🇲🇦', 'Mexico': '🇲🇽', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Qatar': '🇶🇦', 'Serbia': '🇷🇸', 'Saudi Arabia': '🇸🇦', 'Senegal': '🇸🇳', 'Tunisia': '🇹🇳', 'Uruguay': '🇺🇾'}
+dataDict = {'Argentina': '🇦🇷', 'Australia': '🇦🇺', 'Belgium': '🇧🇪', 'Brazil': '🇧🇷', 'Canada': '🇨🇦', 'Switzerland': '🇨🇭', 'Cameroon': '🇨🇲', 'Costa Rica': '🇨🇷', 'Germany': '🇩🇪', 'Denmark': '🇩🇰', 'Ecuador': '🇪🇨', 'Spain': '🇪🇸', 'France': '🇫🇷', 'Ghana': '🇬🇭', 'Croatia': '🇭🇷', 'Iran': '🇮🇷', 'Japan': '🇯🇵', 'Korea Republic': '🇰🇷', 'Morocco': '🇲🇦', 'Mexico': '🇲🇽', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Qatar': '🇶🇦', 'Serbia': '🇷🇸', 'Saudi Arabia': '🇸🇦', 'Senegal': '🇸🇳', 'Tunisia': '🇹🇳', 'Uruguay': '🇺🇾'}
 dataDict['England'] = '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
 dataDict['USA'] = '🇺🇸'
 dataDict['Wales'] = '🏴󠁧󠁢󠁷󠁬󠁳󠁿'
 
-dataDict2 = {'🇦🇷': 'Argentina', '🇦🇺': 'Australia', '🇧🇪': 'Belgium', '🇧🇷': 'Brazil', '🇨🇦': 'Canada', '🇨🇭': 'Switzerland', '🇨🇲': 'Cameroon', '🇨🇷': 'Costa Rica', '🇩🇪': 'Germany', '🇩🇰': 'Denmark', '🇪🇨': 'Ecuador', '🇪🇸': 'Spain', '🇫🇷': 'France', '🇬🇭': 'Ghana', '🇭🇷': 'Croatia', '🇮🇷': 'Iran', '🇯🇵': 'Japan', '🇰🇷': 'South Korea', '🇲🇦': 'Morocco', '🇲🇽': 'Mexico', '🇳🇱': 'Netherlands', '🇵🇱': 'Poland', '🇵🇹': 'Portugal', '🇶🇦': 'Qatar', '🇷🇸': 'Serbia', '🇸🇦': 'Saudi Arabia', '🇸🇳': 'Senegal', '🇹🇳': 'Tunisia', '🇺🇾': 'Uruguay'}
+dataDict2 = {'🇦🇷': 'Argentina', '🇦🇺': 'Australia', '🇧🇪': 'Belgium', '🇧🇷': 'Brazil', '🇨🇦': 'Canada', '🇨🇭': 'Switzerland', '🇨🇲': 'Cameroon', '🇨🇷': 'Costa Rica', '🇩🇪': 'Germany', '🇩🇰': 'Denmark', '🇪🇨': 'Ecuador', '🇪🇸': 'Spain', '🇫🇷': 'France', '🇬🇭': 'Ghana', '🇭🇷': 'Croatia', '🇮🇷': 'Iran', '🇯🇵': 'Japan', '🇰🇷': 'Korea Republic', '🇲🇦': 'Morocco', '🇲🇽': 'Mexico', '🇳🇱': 'Netherlands', '🇵🇱': 'Poland', '🇵🇹': 'Portugal', '🇶🇦': 'Qatar', '🇷🇸': 'Serbia', '🇸🇦': 'Saudi Arabia', '🇸🇳': 'Senegal', '🇹🇳': 'Tunisia', '🇺🇾': 'Uruguay'}
 dataDict2['🏴󠁧󠁢󠁥󠁮󠁧󠁿'] = "England"
 dataDict2['🇺🇸'] = 'USA'
 dataDict2['🏴󠁧󠁢󠁷󠁬󠁳󠁿'] = "Wales"
@@ -37,7 +37,7 @@ async def on_ready():
 @client.command()
 async def sendmatches(ctx):
     general_channel = client.get_channel(1039966870226354248)
-    radate = date.today()
+    radate = date(2022, 11, 24)
     for i in worldcupgames[:48]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
@@ -55,7 +55,7 @@ async def sendmatches(ctx):
 @client.command()
 async def sendmatches2(ctx):
     general_channel = client.get_channel(1043884627246465034)
-    radate = date.today()
+    radate = date(2022, 11, 24)
     for i in worldcupgames[:48]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
@@ -96,7 +96,7 @@ async def test(ctx):
         'Germany': '🇩🇪',
         'Spain': '🇪🇸', 'France': '🇫🇷',
         'Croatia': '🇭🇷',} 
-    d2 = {'🇵🇹': 'Portugal', '🇶🇦': 'Qatar', ':england:': ':england:'}
+    d2 = {'🇵🇹': 'Portugal', '🇶🇦': 'Qatar', ':england:': ':england:', '🇸🇦': '🇸🇦'}
     for i in d.values():
         await msg.add_reaction(i)
     
