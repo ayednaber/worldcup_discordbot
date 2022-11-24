@@ -4,11 +4,11 @@ from discord.ext.commands import Bot
 from discord.ext import tasks
 from datetime import datetime, timedelta, date
 import json
+from boto.s3.connection import S3Connection
 
-from dotenv import load_dotenv
-
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+# from dotenv import load_dotenv
+# load_dotenv()
+# TOKEN = os.getenv('DISCORD_TOKEN')
 
 dataDict = {'Argentina': '🇦🇷', 'Australia': '🇦🇺', 'Belgium': '🇧🇪', 'Brazil': '🇧🇷', 'Canada': '🇨🇦', 'Switzerland': '🇨🇭', 'Cameroon': '🇨🇲', 'Costa Rica': '🇨🇷', 'Germany': '🇩🇪', 'Denmark': '🇩🇰', 'Ecuador': '🇪🇨', 'Spain': '🇪🇸', 'France': '🇫🇷', 'Ghana': '🇬🇭', 'Croatia': '🇭🇷', 'Iran': '🇮🇷', 'Japan': '🇯🇵', 'Korea Republic': '🇰🇷', 'Morocco': '🇲🇦', 'Mexico': '🇲🇽', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Qatar': '🇶🇦', 'Serbia': '🇷🇸', 'Saudi Arabia': '🇸🇦', 'Senegal': '🇸🇳', 'Tunisia': '🇹🇳', 'Uruguay': '🇺🇾'}
 dataDict['England'] = '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
@@ -112,7 +112,7 @@ async def time(ctx):
     testdatetime = datetime.today()
     await ctx.channel.send(str(testdatetime))
 
-client.run(TOKEN)
+client.run(os.environ('DISCORD_TOKEN'))
 
 
 # This is how to mention users
