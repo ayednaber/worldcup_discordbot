@@ -37,7 +37,7 @@ async def on_ready():
 @client.command()
 async def sendmatches(ctx):
     general_channel = client.get_channel(1039966870226354248)
-    radate = date(2022, 11, 24)
+    radate = date.today()
     for i in worldcupgames[:48]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
@@ -55,7 +55,7 @@ async def sendmatches(ctx):
 @client.command()
 async def sendmatches2(ctx):
     general_channel = client.get_channel(1043884627246465034)
-    radate = date(2022, 11, 24)
+    radate = date.today()
     for i in worldcupgames[:48]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
