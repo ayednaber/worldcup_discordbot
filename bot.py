@@ -38,6 +38,8 @@ async def on_ready():
 async def sendmatches(ctx):
     general_channel = client.get_channel(1039966870226354248)
     radate = date.today()
+    new_msg = ""
+    datestr = ""
     for i in worldcupgames[:48]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
@@ -45,29 +47,38 @@ async def sendmatches(ctx):
         dateintoronto = date1 - timedelta(hours=5)
         dateinmexico= date1 - timedelta(hours=6)
         dateineurope = date1 + timedelta(hours=1)
-        # print(radate)
+        message = ""
         if (radate == date1.date()):
-            message = '**' + str(date1.date()) + '**\n'
+            datestr += '**' + str(date1.date()) + '**\n'
             message += i["HomeTeam"] + ' ' + dataDict[i["HomeTeam"]] + " vs. " + i["AwayTeam"] + ' ' + dataDict[i["AwayTeam"]] + '\n'
-            message += '**Times:** ' + dateinjordan.strftime('%I:%M %p') + " :flag_jo:" + "    " + dateineurope.strftime('%I:%M %p') + " :flag_eu:" + "     " + dateintoronto.strftime('%I:%M %p') +  " :flag_ca:" + "     " + dateinmexico.strftime('%I:%M %p') +  " :flag_mx:"
-            await general_channel.send(message)
+            message += '**Times:** ' + dateinjordan.strftime('%I:%M %p') + " :flag_jo:" + "    " + dateineurope.strftime('%I:%M %p') + " :flag_eu:" + "     " + dateintoronto.strftime('%I:%M %p') +  " :flag_ca:" + "     " + dateinmexico.strftime('%I:%M %p') +  " :flag_mx:" + "\n \n"
+        new_msg += message
+    d = datestr.split("\n")
+    todays_games = d[0] + "\n" + new_msg
+    await general_channel.send(todays_games)
 
 @client.command()
 async def sendmatches2(ctx):
     general_channel = client.get_channel(1043884627246465034)
     radate = date.today()
+    new_msg = ""
+    datestr = ""
     for i in worldcupgames[:48]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
         dateinjordan = date1 + timedelta(hours=3)
         dateintoronto = date1 - timedelta(hours=5)
+        dateinmexico= date1 - timedelta(hours=6)
         dateineurope = date1 + timedelta(hours=1)
-        # print(radate)
+        message = ""
         if (radate == date1.date()):
-            message = '**' + str(date1.date()) + '**\n'
+            datestr += '**' + str(date1.date()) + '**\n'
             message += i["HomeTeam"] + ' ' + dataDict[i["HomeTeam"]] + " vs. " + i["AwayTeam"] + ' ' + dataDict[i["AwayTeam"]] + '\n'
-            message += '**Times:** ' + dateinjordan.strftime('%I:%M %p') + " :flag_jo:" + "    " + dateintoronto.strftime('%I:%M %p') + " :flag_ca:" + "     " + dateineurope.strftime('%I:%M %p') +  " :flag_eu:"
-            await general_channel.send(message)
+            message += '**Times:** ' + dateinjordan.strftime('%I:%M %p') + " :flag_jo:" + "    " + dateineurope.strftime('%I:%M %p') + " :flag_eu:" + "     " + dateintoronto.strftime('%I:%M %p') +  " :flag_ca:" + "     " + dateinmexico.strftime('%I:%M %p') +  " :flag_mx:" + "\n \n"
+        new_msg += message
+    d = datestr.split("\n")
+    todays_games = d[0] + "\n" + new_msg
+    await general_channel.send(todays_games)
 
 
 @client.event
@@ -112,7 +123,8 @@ async def time(ctx):
     testdatetime = datetime.today()
     await ctx.channel.send(str(testdatetime))
 
-client.run(os.environ.get('DISCORD_TOKEN'))
+# client.run(os.environ.get('DISCORD_TOKEN'))
+client.run('MTA0MDQ1NDM3OTEzMzc1MTMxNg.Gr7vve.S-x6TpdkaBde930AQcxWCF-SrkaQYDmrH4YMSc')
 
 
 # This is how to mention users
