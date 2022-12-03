@@ -4,6 +4,7 @@ from discord.ext.commands import Bot
 from discord.ext import tasks
 from datetime import datetime, timedelta, date
 import json
+import requests
 # from boto.s3.connection import S3Connection
 
 # from dotenv import load_dotenv
@@ -40,7 +41,10 @@ async def sendmatches(ctx):
     radate = date.today()
     new_msg = ""
     datestr = ""
-    for i in worldcupgames[:48]:
+
+    # Here, we want to get the data every time we call the command
+    worldcupdata = requests.get('https://fixturedownload.com/feed/json/fifa-world-cup-2022')
+    for i in worldcupdata.json()[48:]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
         dateinjordan = date1 + timedelta(hours=3)
@@ -63,7 +67,10 @@ async def sendmatches2(ctx):
     radate = date.today()
     new_msg = ""
     datestr = ""
-    for i in worldcupgames[:48]:
+
+    # Here, we want to get the data every time we call the command
+    worldcupdata = requests.get('https://fixturedownload.com/feed/json/fifa-world-cup-2022')
+    for i in worldcupdata.json()[48:]:
         # print(i["DateUtc"][:len(i["DateUtc"]) - 1])
         date1 = datetime.strptime(i["DateUtc"][:len(i["DateUtc"]) - 1], '%Y-%m-%d %H:%M:%S')
         dateinjordan = date1 + timedelta(hours=3)
