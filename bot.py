@@ -7,8 +7,8 @@ import json
 import requests
 # from boto.s3.connection import S3Connection
 
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 # TOKEN = os.getenv('DISCORD_TOKEN')
 
 dataDict = {'Argentina': '🇦🇷', 'Australia': '🇦🇺', 'Belgium': '🇧🇪', 'Brazil': '🇧🇷', 'Canada': '🇨🇦', 'Switzerland': '🇨🇭', 'Cameroon': '🇨🇲', 'Costa Rica': '🇨🇷', 'Germany': '🇩🇪', 'Denmark': '🇩🇰', 'Ecuador': '🇪🇨', 'Spain': '🇪🇸', 'France': '🇫🇷', 'Ghana': '🇬🇭', 'Croatia': '🇭🇷', 'Iran': '🇮🇷', 'Japan': '🇯🇵', 'Korea Republic': '🇰🇷', 'Morocco': '🇲🇦', 'Mexico': '🇲🇽', 'Netherlands': '🇳🇱', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Qatar': '🇶🇦', 'Serbia': '🇷🇸', 'Saudi Arabia': '🇸🇦', 'Senegal': '🇸🇳', 'Tunisia': '🇹🇳', 'Uruguay': '🇺🇾'}
@@ -130,7 +130,11 @@ async def time(ctx):
     testdatetime = datetime.today()
     await ctx.channel.send(str(testdatetime))
 
-client.run(os.environ.get('DISCORD_TOKEN'))
+# For running in Heroku Cloud
+# client.run(os.environ.get('DISCORD_TOKEN'))
+
+# For running locally using .env file
+client.run(os.getenv('DISCORD_TOKEN'))
 
 
 # This is how to mention users

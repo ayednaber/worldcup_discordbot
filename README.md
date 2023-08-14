@@ -19,3 +19,6 @@ The `ctx` object stands for **context**, which helps us know the channel the use
 
 ## Cloud Deployment
 I am using Heroku to deploy this bot on the cloud. They offer 550 hours of free deployment, which is what I am using as of November 24th.
+Deploying to Heroku was a fairly straightforward process, where a `Procfile` is needed containing the command to run the bot with. There also is the `requirements.txt` file, which contains the packages/dependencies we need to run the bot.
+
+**UPDATE:** After the free tier was no longer offered from Heroku, I switched to Fly.io and deployed my bot there. To deploy to Fly.io, you need to have a `Dockerfile` as well as a `requirements.txt` file containing your dependencies.
